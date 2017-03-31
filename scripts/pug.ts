@@ -4,4 +4,5 @@ export default {
     index: pug.compileFile('pug/index.pug'),
     passwd: pug.compileFile('pug/passwd.pug'),
     register: pug.compileFile('pug/register_key.pug'),
+    new_user: pug.compileFile('pug/new_user.pug'),
 }

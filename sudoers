@@ -1,0 +1,2 @@
+usermon ALL=(ALL) NOPASSWD: /share/usermon/register_key.py
+usermon ALL=(ALL) NOPASSWD: /share/usermon/create_userdirectory.sh

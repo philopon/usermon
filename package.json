@@ -30,7 +30,7 @@
     "build:server": "run-p build:server:*",
     "build:server:ts": "tsc",
     "watch": "npm-run-all -s build -p watch:*",
-    "watch:dev-server": "nodemon -e js,pug --watch pug --watch dist dist/server.js 4566",
+    "watch:dev-server": "nodemon -e js,pug --watch pug --watch dist dist/server.js config.js",
     "watch:server": "run-p watch:server:*",
     "watch:server:ts": "npm run build:server:ts -- -w"
   }

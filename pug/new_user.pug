@@ -12,15 +12,15 @@ html
         form(action="/new_user" method='post')
             div
                 label(for="user_name") ユーザー名
-                input(name="user_name" id="user_name" type="text")
+                input(name="user_name" id="user_name" type="text" value=user_name)
 
             div
                 label(for="surname") 苗字
-                input(name="surname" id="surname" type="text")
+                input(name="surname" id="surname" type="text" value=surname)
 
             div
                 label(for="givenname") 名前
-                input(name="givenname" id="givenname" type="text")
+                input(name="givenname" id="givenname" type="text" value=givenname)
 
             div
                 label(for="passwd") パスワード

@@ -33,13 +33,18 @@ app
 
 .post('/passwd', async (req, res) => {
     const {user_name, current_passwd, new_passwd, new_passwd_re} = req.body;
+
+    function send(msg: string, err: boolean) {
+        res.send(template.passwd(Object.assign({}, req.body, {message: msg, error: err})));
+    }
+
     if(user_name === undefined || current_passwd === undefined || new_passwd === undefined || new_passwd_re === undefined) {
-        res.send(template.passwd({message: "パラメータが不足しています", error: true}));
+        send('パラメータが不足しています', true);
         return;
     }
 
     if (new_passwd !== new_passwd_re) {
-        res.send(template.passwd({message: "2回の新しいパスワードが一致しません", error: true}));
+        send("2回の新しいパスワードが一致しません", true);
         return;
     }
 
@@ -52,10 +57,10 @@ app
 
         await ldap.modify(userDN, {operation: 'replace', modification: {userPassword: encoded}});
 
-        res.send(template.passwd({message: 'パスワードは変更されました'}));
+        send('パスワードは変更されました', false);
         return;
     } catch (e) {
-        res.send(template.passwd({message: e, error: true}))
+        send('エラー: ' + e, true);
     }
 })
 
@@ -66,16 +71,21 @@ app
 .post('/register_key', async (req, res) => {
     const {user_name, passwd, key} = req.body;
 
+    function send(msg: string, err: boolean) {
+        res.send(template.register(Object.assign({}, req.body, {message: msg, error: err})));
+    }
+
     if(user_name === undefined || passwd === undefined || key === undefined) {
-        res.send(template.register({message: 'パラメータが不足しています。', error: true}));
+        send( 'パラメータが不足しています。', true);
+        return;
     }
 
     try {
         await ldap.bind(makeUserDN(user_name), passwd);
         await exe.register_key(user_name, key);
-        res.send(template.register({message: '公開鍵は登録されました。'}));
+        send('公開鍵が登録されました。', false);
     } catch (e) {
-        res.send(template.register({message: e, error: true}))
+        send('エラー: ' + e, true);
     }
 })
 
@@ -86,17 +96,21 @@ app
 .post('/new_user', async (req, res) => {
     const {user_name, surname, givenname, passwd, passwd_re} = req.body;
 
+    function send(msg: string, err: boolean) {
+        res.send(template.new_user(Object.assign({}, req.body, {message: msg, error: err})));
+    }
+
     if(user_name === undefined || surname === undefined || givenname === undefined || passwd === undefined || passwd_re === undefined) {
-        res.send(template.new_user({message: 'パラメータが不足しています。', error: true}));
+        send('パラメータが不足しています。', true);
     }
 
     if (passwd !== passwd_re) {
-        res.send(template.new_user({message: "2回の新しいパスワードが一致しません", error: true}));
+        send("2回のパスワードが一致しません", true);
         return;
     }
 
     if (!isAscii(user_name)) {
-        res.send(template.new_user({message: 'ユーザー名は英語で入力してください', error: true}));
+        send('ユーザー名は英語で入力してください', true);
     }
 
     try {
@@ -108,9 +122,9 @@ app
         await ldap.addGroup(makeGroupDN(user_name), {gid: user_name, gidNumber: uidNumber});
         await exe.createUserDirectory(user_name);
 
-        res.send(template.new_user({message: 'ユーザーが作成されました'}));
+        send('ユーザーが作成されました', false);
     } catch (e) {
-        res.send(template.new_user({message: e, error: true}));
+        send('エラー: ' + e, true);
     }
 })
 

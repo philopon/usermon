@@ -5,7 +5,7 @@ After = network.target
 [Service]
 User = usermon
 WorkingDirectory = /share/usermon
-ExecStart = /usr/bin/node ./dist/server.js 4565
+ExecStart = /usr/bin/npm run server
 
 [Install]
 WantedBy = multi-user.target

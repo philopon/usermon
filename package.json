@@ -26,6 +26,7 @@
     ]
   },
   "scripts": {
+    "server": "node dist/server.js config.js",
     "build": "run-p build:*",
     "build:server": "run-p build:server:*",
     "build:server:ts": "tsc",

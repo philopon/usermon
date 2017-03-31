@@ -1,0 +1,11 @@
+[Unit]
+Description = UserMon
+After = network.target
+
+[Service]
+User = usermon
+WorkingDirectory = /share/usermon
+ExecStart = /usr/bin/node ./dist/server.js 4565
+
+[Install]
+WantedBy = multi-user.target

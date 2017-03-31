@@ -1,0 +1,30 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title パスワード変更
+
+    body
+        if message
+            h2= message
+        h1 パスワード変更
+        form(action="/passwd" method='post')
+            div
+                label(for="user_name") ユーザー名
+                input(name="user_name" id="user_name" type="text")
+
+            div
+                label(for="current_passwd") 現在のパスワード
+                input(name="current_passwd" id="current_passwd" type="password")
+
+            div
+                label(for="new_passwd") 新しいパスワード
+                input(name="new_passwd" id="new_passwd" type="password")
+
+            div
+                label(for="new_passwd_re") 新しいパスワード (再入力)
+                input(name="new_passwd_re" id="new_passwd_re" type="password")
+
+            input(type="submit")
+
+        a(href='/') 戻る

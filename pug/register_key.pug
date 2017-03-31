@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title 公開鍵登録
+
+    body
+        if message
+            h2= message
+        h1 公開鍵登録
+        form(action="/register_key" method='post')
+            div
+                label(for="user_name") ユーザー名
+                input(name="user_name", id="user_name", type="text")
+            div
+                label(for="passwd") パスワード
+                input(name="passwd", id="passwd", type="password")
+            div
+                label(for="key") 公開鍵
+            div
+                textarea(name="key" id="key" cols=80 rows=10)
+            div
+                input(type="submit")
+
+        a(href='/') 戻る

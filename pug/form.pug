@@ -1,0 +1,13 @@
+extends common
+
+block content
+    if message
+        if error
+            div.alert.alert-danger= message
+        else
+            div.alert.alert-success= message
+
+    block form
+
+    div.text-right
+        a(href='/') 戻る

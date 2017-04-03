@@ -23,6 +23,8 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static('node_modules'));
+
 app
 .get('/', (_req, res) => {
     res.send(template.index());

@@ -9,6 +9,7 @@
     "@types/ldapjs": "^1.0.0",
     "@types/pug": "^2.0.4",
     "body-parser": "^1.17.1",
+    "bootstrap": "^3.3.7",
     "express": "^4.15.2",
     "ldapjs": "^1.0.1",
     "nodemon": "^1.11.0",

@@ -1,15 +1,13 @@
-doctype html
-html
-    head
-        meta(charset="UTF-8")
-        title ユーザー設定
+extends common
 
-    body
-        h1 ユーザー設定
-        ul
-            li
-                a(href="/passwd") パスワード変更
-            li
-                a(href="/register_key") 公開鍵登録
-            li
-                a(href="/new_user") ユーザーの追加
+block title
+    | ユーザー設定
+
+block content
+    ul
+        li
+            a(href="/passwd") パスワード変更
+        li
+            a(href="/register_key") 公開鍵登録
+        li
+            a(href="/new_user") ユーザーの追加

@@ -1,35 +1,30 @@
-doctype html
-html
-    head
-        meta(charset="UTF-8")
-        title 新規ユーザー
+extends form
 
-    body
-        if message
-            h2= message
+block title
+    | 新規ユーザー
 
-        h1 新規ユーザー
-        form(action="/new_user" method='post')
-            div
-                label(for="user_name") ユーザー名
-                input(name="user_name" id="user_name" type="text" value=user_name)
+block form
+    form(action="/new_user" method='post')
+        div.form-group
+            label(for="user_name") ユーザー名
+            input.form-control(name="user_name" id="user_name" type="text" value=user_name)
 
-            div
-                label(for="surname") 苗字
-                input(name="surname" id="surname" type="text" value=surname)
+        div.form-group
+            label(for="surname") 苗字
+            input.form-control(name="surname" id="surname" type="text" value=surname)
 
-            div
-                label(for="givenname") 名前
-                input(name="givenname" id="givenname" type="text" value=givenname)
+        div.form-group
+            label(for="givenname") 名前
+            input.form-control(name="givenname" id="givenname" type="text" value=givenname)
 
-            div
-                label(for="passwd") パスワード
-                input(name="passwd" id="passwd" type="password")
+        div.form-group
+            label(for="passwd") パスワード
+            input.form-control(name="passwd" id="passwd" type="password")
 
-            div
-                label(for="passwd_re") パスワード (再入力)
-                input(name="passwd_re" id="passwd_re" type="password")
+        div.form-group
+            label(for="passwd_re") パスワード (再入力)
+            input.form-control(name="passwd_re" id="passwd_re" type="password")
 
-            input(type="submit")
+        div.form-group
+            button.btn.btn-default(type="submit") 作成
 
-        a(href='/') 戻る

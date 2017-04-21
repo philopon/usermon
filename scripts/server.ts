@@ -5,7 +5,6 @@ import * as path from 'path';
 import * as ldap from './ldap';
 import template from './pug';
 import * as exe from './exe';
-import isAscii from './is-ascii';
 
 declare function require(path: string): any;
 
@@ -104,15 +103,22 @@ app
 
     if(user_name === undefined || surname === undefined || givenname === undefined || passwd === undefined || passwd_re === undefined) {
         send('パラメータが不足しています。', true);
+        return;
+    }
+
+    if (!user_name.match(/^[a-z_][a-z0-9_]{0,30}$/)) {
+        send('使用できないユーザー名です。ユーザー名には数字(先頭以外)、英小文字、_ が使用可能です。32文字未満で指定してください。', true);
+    }
+
+    if (passwd.length < 1) {
+        send("パスワードが設定されていません。", true);
+
+        return;
     }
 
     if (passwd !== passwd_re) {
         send("2回のパスワードが一致しません", true);
         return;
-    }
-
-    if (!isAscii(user_name)) {
-        send('ユーザー名は英語で入力してください', true);
     }
 
     try {

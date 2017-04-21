@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 
 U=$1
 
-btrfs subvolume create /home/$U
+zfs create tank1/home/$U
 cp -ar /etc/skel/. /home/$U
 chown -R $U:$U /home/$U
 chmod 750 /home/$U

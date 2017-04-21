@@ -1,10 +1,10 @@
 [Unit]
 Description = UserMon
-After = network.target
+After = sssd.service network.target
 
 [Service]
 User = usermon
-WorkingDirectory = /share/usermon
+WorkingDirectory = /var/lib/usermon
 ExecStart = /usr/bin/npm run server
 
 [Install]
